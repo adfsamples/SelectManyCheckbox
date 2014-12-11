@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html>
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <af:document title="GettingSelectedItems.jsf" id="d1">
+        <af:form id="f1">
+            <af:panelGroupLayout id="pgl1" layout="vertical" inlineStyle="padding: 20px;">
+                <h1>Getting value of selected items</h1>
+                <p>This is a sample of the selectManyCheckbox component demonstrating how to get the values of select
+                   items of the selectManyCheckbox.</p>
+                <p>Select items from the selectManyCheckbox, then submit to push the values of select items to the
+                   server-end model, a bean property. The inputText will display the output messages.</p>
+                <af:panelFormLayout id="pfl1" labelWidth="100">
+                    <af:group id="g1">
+                        <af:selectManyCheckbox id="smc1" label="Weekdays" value="#{selectManyBean.value}">
+                            <f:selectItems id="si1" value="#{selectManyBean.selectItems}"/>
+                        </af:selectManyCheckbox>
+                        <af:button id="b1" text="Submit" actionListener="#{selectManyBean.actionListener}"/>
+                    </af:group>
+                    <af:inputText id="it1" label="Output" value="#{selectManyBean.output}" columns="80" rows="10"
+                                  partialTriggers="b1"/>
+                </af:panelFormLayout>
+            </af:panelGroupLayout>
+        </af:form>
+    </af:document>
+</f:view>
