@@ -6,9 +6,9 @@
         <af:form id="f1">
             <af:panelGroupLayout id="pgl1" layout="vertical" inlineStyle="padding: 20px;">
                 <h1>Getting value of selected items</h1>
-                <p>This is a sample of the selectManyCheckbox component demonstrating how to get the values of select
+                <p>This is a sample of the selectManyCheckbox component demonstrating how to get the value of select
                    items of the selectManyCheckbox.</p>
-                <p>Select items from the selectManyCheckbox, then submit to push the values of select items to the
+                <p>Select items from the selectManyCheckbox, then submit to push the value of select items to the
                    server-end model, a bean property. The inputText will display the output messages.</p>
                 <af:panelFormLayout id="pfl1" labelWidth="100">
                     <af:group id="g1">

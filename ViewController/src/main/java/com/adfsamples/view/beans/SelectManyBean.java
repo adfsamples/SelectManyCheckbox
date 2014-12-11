@@ -2,35 +2,40 @@ package com.adfsamples.view.beans;
 
 import java.io.Serializable;
 
-import java.lang.reflect.Array;
-
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-
 import java.util.List;
 
 import javax.faces.event.ActionEvent;
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
-public class SelectManyBean {
+public class SelectManyBean implements Serializable {
 
-    private static final SelectItem[] selectItems;
-    static {
-        selectItems = new SelectItem[7];
-        selectItems[0] = new SelectItem("Sunday");
-        selectItems[1] = new SelectItem("Monday");
-        selectItems[2] = new SelectItem("Tuesday");
-        selectItems[3] = new SelectItem("Wednesday");
-        selectItems[4] = new SelectItem("Thursday");
-        selectItems[5] = new SelectItem("Friday");
-        selectItems[6] = new SelectItem("Saturday");
+    public enum Weekday {
+        Sunday,
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday
     }
 
-    private Object value;
+    private static final List<SelectItem> selectItems;
+    static {
+        selectItems = new ArrayList<SelectItem>();
+        for (Weekday weekday : Weekday.values()) {
+            selectItems.add(new SelectItem(weekday, weekday.toString()));
+        }
+    }
+
+    // initialize the value to an array of Weekday
+    private Object value = new Weekday[] { Weekday.Sunday, Weekday.Saturday };
+
+    // output message
     private String output = "";
 
-    public SelectItem[] getSelectItems() {
+    public List<SelectItem> getSelectItems() {
         return selectItems;
     }
 
