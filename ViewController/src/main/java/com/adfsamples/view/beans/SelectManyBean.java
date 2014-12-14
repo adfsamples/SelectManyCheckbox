@@ -21,30 +21,57 @@ public class SelectManyBean implements Serializable {
         Saturday
     }
 
-    private static final List<SelectItem> selectItems;
+    public enum Sport {
+        Jogging,
+        Running,
+        Tennis,
+    }
+
+    private static final List<SelectItem> daysSelectItems;
     static {
-        selectItems = new ArrayList<SelectItem>();
+        daysSelectItems = new ArrayList<SelectItem>();
         for (Weekday weekday : Weekday.values()) {
-            selectItems.add(new SelectItem(weekday, weekday.toString()));
+            daysSelectItems.add(new SelectItem(weekday, weekday.toString()));
         }
     }
 
+    private static final SelectItem[] sportsSelectItems;
+    static {
+        sportsSelectItems = new SelectItem[3];
+        sportsSelectItems[0] = new SelectItem(Sport.Jogging, Sport.Jogging.toString());
+        sportsSelectItems[1] = new SelectItem(Sport.Running, Sport.Running.toString());
+        sportsSelectItems[2] = new SelectItem(Sport.Tennis, Sport.Tennis.toString());
+    }
+
     // initialize the value to an array of Weekday
-    private Object value = new Weekday[] { Weekday.Sunday, Weekday.Saturday };
+    private Object days = new Weekday[] { Weekday.Sunday, Weekday.Saturday };
+    private Object sports;
 
     // output message
     private String output = "";
 
-    public List<SelectItem> getSelectItems() {
-        return selectItems;
+    public List<SelectItem> getDaysSelectItems() {
+        return daysSelectItems;
     }
 
-    public void setValue(Object value) {
-        this.value = value;
+    public SelectItem[] getSportsSelectItems() {
+        return sportsSelectItems;
     }
 
-    public Object getValue() {
-        return value;
+    public void setDays(Object value) {
+        this.days = value;
+    }
+
+    public Object getDays() {
+        return days;
+    }
+
+    public void setSports(Object sports) {
+        this.sports = sports;
+    }
+
+    public Object getSports() {
+        return sports;
     }
 
     public String getOutput() {
@@ -52,18 +79,31 @@ public class SelectManyBean implements Serializable {
     }
 
     public void actionListener(ActionEvent actionEvent) {
-        System.out.println("value: " + (value == null ? "null" : value.getClass().getName()));
+        System.out.println(">>> days: " + (days == null ? "null" : days.getClass().getName()));
+        System.out.println(">>> sports: " + (sports == null ? "null" : sports.getClass().getName()));
 
         // The value attribute of the selectManyCheckbox, like any other selectMany component,
         // must be a List or an Array.
-        if (value == null) {
-            output += "no item selected.\n";
-        } else if (value instanceof List) {
-            List list = (List) value;
-            output += list.size() + " item(s) selected: " + Arrays.toString(list.toArray()) + "\n";
-        } else if (value.getClass().isArray()) {
-            Object[] arr = (Object[]) value;
-            output += arr.length + " item(s) selected: " + Arrays.toString(arr) + "\n";
+        if (days == null) {
+            output += "days: no item selected.\n";
+        } else if (days instanceof List) {
+            List list = (List) days;
+            output += "days: " + list.size() + " item(s) selected: " + Arrays.toString(list.toArray()) + "\n";
+        } else if (days.getClass().isArray()) {
+            Object[] arr = (Object[]) days;
+            output += "days: " + arr.length + " item(s) selected: " + Arrays.toString(arr) + "\n";
         }
+
+        if (sports == null) {
+            output += "sports: no item selected.\n";
+        } else if (sports instanceof List) {
+            List list = (List) sports;
+            output += "sports: " + list.size() + " item(s) selected: " + Arrays.toString(list.toArray()) + "\n";
+        } else if (sports.getClass().isArray()) {
+            Object[] arr = (Object[]) sports;
+            output += "sports: " + arr.length + " item(s) selected: " + Arrays.toString(arr) + "\n";
+        }
+        
+        output += "\n";
     }
 }
