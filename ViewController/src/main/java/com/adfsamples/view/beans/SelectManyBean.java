@@ -42,13 +42,13 @@ public class SelectManyBean implements Serializable {
         sportsSelectItems[1] = new SelectItem(Sport.Running, Sport.Running.toString());
         sportsSelectItems[2] = new SelectItem(Sport.Tennis, Sport.Tennis.toString());
     }
-
-    // initialize the value to an array of Weekday
-    private Object days = new Weekday[] { Weekday.Sunday, Weekday.Saturday };
-    private Object sports;
-
     // output message
     private String output = "";
+
+    // initialize the value to an array of Weekday
+    private Weekday[] days = new Weekday[] { Weekday.Sunday, Weekday.Saturday };
+    private Object sports;
+
 
     public List<SelectItem> getDaysSelectItems() {
         return daysSelectItems;
@@ -58,11 +58,11 @@ public class SelectManyBean implements Serializable {
         return sportsSelectItems;
     }
 
-    public void setDays(Object value) {
+    public void setDays(Weekday[] value) {
         this.days = value;
     }
 
-    public Object getDays() {
+    public Weekday[] getDays() {
         return days;
     }
 
@@ -86,10 +86,7 @@ public class SelectManyBean implements Serializable {
         // must be a List or an Array.
         if (days == null) {
             output += "days: no item selected.\n";
-        } else if (days instanceof List) {
-            List list = (List) days;
-            output += "days: " + list.size() + " item(s) selected: " + Arrays.toString(list.toArray()) + "\n";
-        } else if (days.getClass().isArray()) {
+        } else {
             Object[] arr = (Object[]) days;
             output += "days: " + arr.length + " item(s) selected: " + Arrays.toString(arr) + "\n";
         }

@@ -20,7 +20,7 @@
                 </af:panelFormLayout>
                 <af:panelFormLayout id="pfl2" labelAlignment="top">
                     <af:button id="b1" text="Submit" actionListener="#{selectManyBean.actionListener}"/>
-                    <af:inputText id="it1" label="Output" value="#{selectManyBean.output}" columns="80" rows="10"
+                    <af:inputText id="it1" label="Output" value="#{selectManyBean.output}" columns="80" rows="6"
                                   partialTriggers="b1"/>
                 </af:panelFormLayout>
             </af:panelGroupLayout>
